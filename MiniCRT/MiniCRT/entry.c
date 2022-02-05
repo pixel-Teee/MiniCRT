@@ -1,15 +1,16 @@
+#include "minicrt.h"
 
 #ifdef WIN32
 #include <Windows.h>
 #endif
 
 extern int main(int argc, char* agrv[]);
-void exit(int);
+//heap init
+int mini_crt_heap_init();
 
-static void crt_fatal_error(const char* msg)
-{
-	exit(1);
-}
+//error && exit
+void crt_fatal_error(const char* msg);
+void Exit(int);
 
 void mini_crt_entry(void)
 {
@@ -24,6 +25,8 @@ void mini_crt_entry(void)
 	//Ω‚ Õ√¸¡Ó––
 	argv[0] = c1;
 	++argc;
+	// "F:/Test.exe" 123 456 789
+	// divide these to F:/Test.exe 123 456 789
 	while (*c1)
 	{
 		if (*c1 == '\"')
@@ -62,25 +65,34 @@ void mini_crt_entry(void)
 		crt_fatal_error("heap initialize failed");
 	}
 	
+	
 	if (!mini_crt_io_init())
 	{
 		crt_fatal_error("IO initialize failed");
 	}
-
+	
 	ret = main(argc, argv);
-	exit(ret);
+	Exit(ret);
 }
 
-void exit(int exitCode)
+void Exit(int exitCode)
 {
 	//mini_crt_call_exit_routine()
 #ifdef WIN32
 	ExitProcess(exitCode);
 #else
+	//hlt pause the process
+	//m exitcode memory variable
+	//ebx store the error code
 	asm("movl %0, %%ebx \n\t"
 		"movl $1, %%eax \n\t"
 		"int $0x80 \n\t"
 		"hlt \n\t"::"m"(exitCode));
 #endif
+}
+
+static void crt_fatal_error(const char* msg)
+{
+	Exit(1);
 }
 

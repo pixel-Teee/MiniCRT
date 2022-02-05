@@ -1,6 +1,10 @@
 MiniCRT/.vs/
 MiniCRT/Debug/
 MiniCRT/MiniCRT/Debug/
+MiniCRT/MiniCRT/Release/
+MiniCRT/Release/
+MiniCRT/test/Release
+MiniCRT/test/Debug
 
 # Prerequisites
 *.d
