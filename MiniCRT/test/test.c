@@ -4,11 +4,11 @@ int main(int argc, char* argv[])
 {
 	int i;
 	FILE* fp;
-	char** v = Malloc(argc * sizeof(char*));
+	char** v = (char**)Malloc(argc * sizeof(char*));
 
 	for (i = 0; i < argc; ++i)
 	{
-		v[i] = Malloc(Strlen(argv[i]) + 1);
+		v[i] = (char*)Malloc(Strlen(argv[i]) + 1);
 		Strcpy(v[i], argv[i]);
 	}
 

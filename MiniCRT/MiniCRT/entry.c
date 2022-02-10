@@ -70,6 +70,8 @@ void mini_crt_entry(void)
 	{
 		crt_fatal_error("IO initialize failed");
 	}
+
+	do_global_ctors();
 	
 	ret = main(argc, argv);
 	Exit(ret);
@@ -77,7 +79,7 @@ void mini_crt_entry(void)
 
 void Exit(int exitCode)
 {
-	//mini_crt_call_exit_routine()
+	mini_crt_call_exit_routine();
 #ifdef WIN32
 	ExitProcess(exitCode);
 #else

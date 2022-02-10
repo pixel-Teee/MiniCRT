@@ -50,6 +50,13 @@ int Fputs(const char* str, FILE* stream);
 int Printf(const char* format, ...);
 int Fprintf(FILE* stream, const char* format, ...);
 
+void do_global_ctors();
+void mini_crt_call_exit_routine();
+
+//atexit
+typedef void (*atexit_func_t)(void);
+int atexit(atexit_func_t func);
+
 #ifdef __cplusplus
 }
 #endif

@@ -143,9 +143,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="atexit.cpp" />
+    <ClCompile Include="ctors.cpp" />
+    <ClCompile Include="ctrbegin.cpp" />
+    <ClCompile Include="ctrend.cpp" />
     <ClCompile Include="entry.c" />
     <ClCompile Include="io.c" />
     <ClCompile Include="mallo.c" />
+    <ClCompile Include="new_delete.cpp" />
     <ClCompile Include="print.c" />
     <ClCompile Include="string.c" />
   </ItemGroup>
